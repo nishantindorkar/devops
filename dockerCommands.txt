@@ -1,0 +1,32 @@
+#Commands in Docker
+
+* docker images #to see all images present in your local machine
+* docker search jenkins #to find out jenkins images in docker hub
+* docker pull jenkins #to download jenkins images from dockerhub to local machine
+* docker run -it --name container_name ubuntu /bin/bash #to make a new container with name to the container (-it=interactive mode, terminal)
+* service docker status #to check, service is start or not
+* docker start container_name #to start container
+* docker attach container_name #to go inside container
+* docker ps -a #to see all container
+* docker ps #to see only running container(ps = process status)
+* docker stop container_name #to stop container
+* docker rm container_name #to delete container
+* docker diff container_name #to see the difference between base images & changes on it
+* docker commit container_name image_name #create image of the container
+* docker build -t myimg . #create image out of Dockerfile
+* docker run -it --name container2 --privileged=true --volume-from container1 ubuntu /bin/bash #share volume with another container
+* docker run -it --name container3 -v /vol2 ubuntu /bin/bash #build volume through command line
+* docker run -it --name container4 --privileged=true --volumes-from container3 ubuntu /bin/bash #share valume of container3 to container4
+* docker valume ls #to see locally created volume
+* docker volume create volume_name #to create volume in container 
+* docker valume rm volume_name #to remove volume in container 
+* docker volume prune #to remove all unused docker volume
+* docker valume inspect volume_name #to check volume releated details 
+* docker container inspect container_name to check container releated details
+* docker run -it --name hostCont -v /home/ec2-user:/volume --privileged=true ubuntu /bin/bash #to share ec2-user data to container volume
+* docker run -td --name testserver -p 80:80 ubuntu #to connect ec2 instance with container mapping with port 80 
+* docker port testserver #to check is it mapping or not
+* docker exec -it testserver /bin/bash #same as attach for go inside to the container with a new process
+* docker stop $(docker ps -a -q) #to stop all running containers
+* docker rm $(docker ps -a -q) #to delete all stopped containers
+* docker rmi -f $(docker images -q) #to delete all images

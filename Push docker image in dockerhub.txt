@@ -1,0 +1,22 @@
+# Push docker image in dockerhub
+
+* create ec2 instance
+-> sudo su
+-> yum update -y
+-> yum install docker -y
+-> service docker start
+-> docker run -it --name container_name ubuntu /bin/bash #create some file inside the container
+-> docker commit container_name image_name #create image of this container
+
+* go to account hub.docker.com #login
+
+* go to ec2 instance
+-> docker login #enter username and password
+-> docker tag image_name dockerid/newimage #give tag to image
+-> docker push dockerid/newimage 
+
+* now see this image in docker hub account
+
+* create one instance in other region and pull image from hub
+-> docker pull dockerid/newimage 
+-> docker run -it --name new_container dockerid/newimage bin/bash
