@@ -1,0 +1,79 @@
+# installing docker
+
+* sudo apt install docker.io -y #  Install Docker
+* sudo snap install docker #Install all the dependency packages
+* sudo apt-get remove docker docker-engine docker.io  # Remove any Docker files that are running in the system
+
+
+#commands
+
+* docker search ubuntu/IMAGE_NAME # Search for available images on Docker Hub
+* docker run IMAGE_NAME #creates a container from the specified image (non-interactive mode)
+* docker run -it ubuntu # Entered in the container (interactive mode)
+* docker images # Check if the docker image has been pulled and is present in your system
+* docker ps # To check for containers in a running state(ps = process status)
+* docker ps -a # To display all the containers pulled
+* docker ps -a -q #to show list of container ids 
+* docker ps -l # show only the latest container
+* docker pull IMAGE_NAME # pull image from docker container
+* docker image ls # list the docker images
+* docker run -it --name container_name ubuntu /bin/bash #to make a new container with name to the container (-it=interactive mode, terminal)
+* docker run -d --name container_name httpd # create container with name (-d:deattach)
+* docker run -d nginx:latest # nginx with latest tag
+* docker inspect CONTAINER_ID # to see ip/details of the container
+* docker run -d -P httpd # random free port map with container's port
+* docker run -d -P 8080:8080 tomcat:8 # 8080 port map with container's port
+* docker run -d httpd # container directly installed from remote 
+* docker kill CONTAINER_ID # to kill/terminate/exit container
+* docker image rm -f httpd # to remove httpd image from container (use -f for forcefully)
+* service docker status #to check, service is start or not
+* docker start container_name/CONTAINER_ID #to start container
+* docker attach container_name #to go inside container
+* docker stop container_name #to stop container
+* docker rm container_name/CONTAINER_ID #to delete container
+* docker diff container_name #to see the difference between base images & changes on it
+* docker commit container_name image_name #create image of the container
+* docker build -t myimg . #create image out of Dockerfile
+* docker run -it --name container2 --privileged=true --volume-from container1 ubuntu /bin/bash #share volume with another container
+* docker run -it --name container3 -v /vol2 ubuntu /bin/bash #build volume through command line
+* docker run -it --name container4 --privileged=true --volumes-from container3 ubuntu /bin/bash #share valume of container3 to container4
+* docker container inspect container_name to check container releated details
+* docker run -it --name hostCont -v /home/ec2-user:/volume --privileged=true ubuntu /bin/bash #to share ec2-user data to container volume
+* docker run -td --name testserver -p 80:80 ubuntu #to connect ec2 instance with container mapping with port 80 
+* docker port testserver #to check is it mapping or not
+* docker exec -it testserver /bin/bash #same as attach for go inside to the container with a new process
+* docker stop $(docker ps -a -q) #to stop all running containers
+* docker rm $(docker ps -a -q) #to delete all stopped containers
+* docker rm -f `docker ps -a -q` #to delete all containers
+* docker rmi -f $(docker images -q) #to delete all images
+
+
+
+# go to account hub.docker.com #login
+
+* docker login #enter username and password
+* docker tag image_name dockerid/newimage #give tag to image
+* docker push dockerid/newimage #push in docker remote repository 
+
+
+# Docker Volume Commands
+
+* docker volume ls #to see locally created volume
+* docker volume create volume_name #to create volume in container 
+* docker volume rm volume_name #to remove volume in container 
+* docker volume prune #to remove all unused docker volume
+* docker volume inspect volume_name #to check volume releated details 
+
+
+# Docker Network Commands
+
+* docker network connect [network-name]	#Connects a container to a network.
+* docker network create [network-name]	#Creates a new network.
+* docker network disconnect [network-name]	#Disconnects a container from the specified network.
+* docker network inspect [network-name]	#Outputs detailed information on the specified network or networks.
+* docker network ls	#Lists all networks in a container.
+* docker network prune	#Removes all unused networks in a container.
+* docker network rm [network-name]	#Removes the specified network or networks.
+
+
+Notes : mv webapps.dist/* ./
